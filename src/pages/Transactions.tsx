@@ -4,6 +4,8 @@ import { useFilters } from '../contexts/FilterContext';
 import { formatCurrency } from '../utils/currency.utils';
 import { mockFamilyMembers } from '../data/mockFamilyMembers';
 import { NewTransactionModal } from '../components/modals/NewTransactionModal';
+import { CreditCardsWidget } from '../components/dashboard/CreditCardsWidget';
+import { UpcomingExpensesWidget } from '../components/dashboard/UpcomingExpensesWidget';
 
 export const Transactions = () => {
   const { transactions, bankAccounts, creditCards } = useFinancial();
@@ -540,6 +542,12 @@ export const Transactions = () => {
           )}
         </>
       )}
+
+      {/* Widgets em telas menores que xl - aparecem abaixo da tabela */}
+      <div className="lg:hidden mt-8 space-y-6">
+        <CreditCardsWidget />
+        <UpcomingExpensesWidget />
+      </div>
 
       {/* Modal de Nova Transação */}
       <NewTransactionModal

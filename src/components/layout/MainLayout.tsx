@@ -30,8 +30,8 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
           </div>
         </main>
 
-        {/* Widgets à Direita */}
-        <aside className="w-80 xl:w-96 bg-background-400 p-4 md:p-6 lg:p-8 border-l border-stroke-4 space-y-6 overflow-y-auto">
+        {/* Widgets à Direita - apenas em telas xl+ */}
+        <aside className="hidden xl:block w-80 xl:w-96 bg-background-400 p-4 md:p-6 lg:p-8 border-l border-stroke-4 space-y-6 overflow-y-auto">
           <CreditCardsWidget />
           <UpcomingExpensesWidget />
         </aside>
