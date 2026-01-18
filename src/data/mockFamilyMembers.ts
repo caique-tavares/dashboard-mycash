@@ -1,0 +1,48 @@
+import { FamilyMember } from '../types';
+
+export const mockFamilyMembers: FamilyMember[] = [
+  {
+    id: '1',
+    name: 'João Silva',
+    email: 'joao.silva@example.com',
+    role: 'parent',
+    avatar: undefined,
+    monthlyIncome: 8500,
+    permissions: {
+      canViewTransactions: true,
+      canCreateTransactions: true,
+      canEditTransactions: true,
+      canDeleteTransactions: true,
+      canViewGoals: true,
+      canCreateGoals: true,
+      canEditGoals: true,
+      canViewCards: true,
+      canViewAccounts: true,
+    },
+    isActive: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: '2',
+    name: 'Maria Silva',
+    email: 'maria.silva@example.com',
+    role: 'parent',
+    avatar: undefined,
+    monthlyIncome: 7200,
+    permissions: {
+      canViewTransactions: true,
+      canCreateTransactions: true,
+      canEditTransactions: true,
+      canDeleteTransactions: true,
+      canViewGoals: true,
+      canCreateGoals: true,
+      canEditGoals: true,
+      canViewCards: true,
+      canViewAccounts: true,
+    },
+    isActive: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+];

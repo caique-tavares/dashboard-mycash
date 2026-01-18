@@ -1,0 +1,266 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos globais básicos */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  height: 100%;
+  min-height: 100vh;
+}
+
+/* Animações globais */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+/* Durações e easings consistentes */
+:root {
+  --duration-fast: 200ms;
+  --duration-normal: 300ms;
+  --duration-slow: 400ms;
+  --duration-loading: 800ms;
+  --duration-progress: 1000ms;
+  --easing-ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Transições globais */
+* {
+  transition-property: color, background-color, border-color, opacity, transform, box-shadow;
+  transition-timing-function: var(--easing-ease-in-out);
+  transition-duration: var(--duration-fast);
+}
+
+/* Respeitar prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Classes de animação reutilizáveis */
+.animate-fade-in {
+  animation: fadeIn var(--duration-normal) var(--easing-ease-out);
+}
+
+.animate-fade-out {
+  animation: fadeOut var(--duration-fast) var(--easing-ease-out);
+}
+
+.animate-slide-up {
+  animation: slideUp var(--duration-normal) var(--easing-ease-out);
+}
+
+.animate-slide-down {
+  animation: slideDown var(--duration-fast) var(--easing-ease-out);
+}
+
+.animate-scale-in {
+  animation: scaleIn var(--duration-slow) var(--easing-ease-out);
+}
+
+.animate-slide-in-right {
+  animation: slideInRight var(--duration-normal) var(--easing-ease-out);
+}
+
+.animate-slide-out-right {
+  animation: slideOutRight var(--duration-fast) var(--easing-ease-out);
+}
+
+.animate-pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Skeleton loaders */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Micro-interações */
+.btn-hover:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-hover:hover {
+  transform: scale(1.05);
+}
+
+.input-focus:focus {
+  border-color: #D7FF00;
+  box-shadow: 0 0 0 3px rgba(215, 255, 0, 0.1);
+}
+
+.checkbox-click:active {
+  transform: scale(1.1);
+}
+
+.toggle-click:active {
+  transform: scale(1.05);
+}
+
+/* Animações específicas para componentes */
+.transaction-card {
+  animation: slideUp var(--duration-normal) var(--easing-ease-out);
+}
+
+.transaction-card:nth-child(1) { animation-delay: 0ms; }
+.transaction-card:nth-child(2) { animation-delay: 50ms; }
+.transaction-card:nth-child(3) { animation-delay: 100ms; }
+.transaction-card:nth-child(4) { animation-delay: 150ms; }
+.transaction-card:nth-child(5) { animation-delay: 200ms; }
+
+.category-donut {
+  animation: scaleIn var(--duration-slow) var(--easing-ease-out);
+}
+
+.category-donut:nth-child(1) { animation-delay: 0ms; }
+.category-donut:nth-child(2) { animation-delay: 100ms; }
+.category-donut:nth-child(3) { animation-delay: 200ms; }
+.category-donut:nth-child(4) { animation-delay: 300ms; }
+
+.grid-card {
+  animation: slideUp var(--duration-normal) var(--easing-ease-out);
+}
+
+.grid-card:nth-child(1) { animation-delay: 0ms; }
+.grid-card:nth-child(2) { animation-delay: 80ms; }
+.grid-card:nth-child(3) { animation-delay: 160ms; }
+.grid-card:nth-child(4) { animation-delay: 240ms; }
+
+/* Modal animations */
+.modal-overlay {
+  animation: fadeIn var(--duration-fast) var(--easing-ease-out);
+}
+
+.modal-content {
+  animation: scaleIn var(--duration-normal) var(--easing-ease-out);
+}
+
+.modal-mobile {
+  animation: slideUp var(--duration-normal) var(--easing-ease-out);
+}
+
+/* Progress bar animations */
+.progress-bar {
+  transition: width var(--duration-progress) var(--easing-ease-out);
+}
+
+/* Number counter animation */
+.counter-number {
+  transition: all var(--duration-loading) var(--easing-ease-out);
+}
+
+/* Toast animations */
+.toast-enter {
+  animation: slideInRight var(--duration-normal) var(--easing-ease-out);
+}
+
+.toast-exit {
+  animation: slideOutRight var(--duration-fast) var(--easing-ease-out);
+}
