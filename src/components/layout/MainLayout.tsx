@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Sidebar } from './Sidebar';
 import { Header } from './Header';
 import { CreditCardsWidget } from '../dashboard/CreditCardsWidget';
@@ -11,30 +12,33 @@ interface MainLayoutProps {
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
   const { isExpanded } = useSidebar();
+  const location = useLocation();
+  const isCardsPage = location.pathname === '/cards';
 
   return (
     <div className="min-h-screen bg-background-400">
       <Sidebar />
 
-      {/* Desktop: três seções lado a lado */}
-      <div className="hidden lg:flex flex-row min-h-screen">
-        {/* Dashboard Central */}
+      {/* Desktop: conteúdo principal ocupando toda a tela */}
+      <div className="hidden lg:block">
+        <Sidebar />
         <main
           key={isExpanded ? 'expanded' : 'collapsed'}
-          className={`flex-1 transition-all duration-300 ease-in-out ${
+          className={`min-h-screen transition-all duration-300 ease-in-out ${
             isExpanded ? 'lg:ml-[300px]' : 'lg:ml-[100px]'
           }`}
         >
-          <div className="max-w-[1400px] xl:max-w-[1600px] mx-auto p-4 md:p-6 lg:p-8">
+          <div className="p-4 md:p-6 lg:p-8">
             {children}
+            {/* Widgets apenas na página Cards */}
+            {isCardsPage && (
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-8">
+                <CreditCardsWidget />
+                <UpcomingExpensesWidget />
+              </div>
+            )}
           </div>
         </main>
-
-        {/* Widgets à Direita - apenas em telas xl+ */}
-        <aside className="hidden xl:block w-80 xl:w-96 bg-background-400 p-4 md:p-6 lg:p-8 border-l border-stroke-4 space-y-6 overflow-y-auto">
-          <CreditCardsWidget />
-          <UpcomingExpensesWidget />
-        </aside>
       </div>
 
       {/* Tablet e Mobile: Header + conteúdo principal */}
@@ -43,6 +47,13 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
         <main className="pt-16 p-4 md:p-6">
           <div className="max-w-full">
             {children}
+            {/* Widgets apenas na página Cards */}
+            {isCardsPage && (
+              <div className="grid grid-cols-1 gap-6 mt-8">
+                <CreditCardsWidget />
+                <UpcomingExpensesWidget />
+              </div>
+            )}
           </div>
         </main>
       </div>
